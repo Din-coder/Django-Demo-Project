@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-2'></div>
+		<div class='col-md-8 mt-5'>
+			<div class="card p-5">
+				<form method='post' class='post-form' action="{% url 'create' %}" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-md-12">
+							<h3>Employee Registration Form</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Firstname</label>
+							<input type="text" name="firstname" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Lastname</label>
+							<input type="text" name="lastname" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Age</label>
+							<input type="number" name="age" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Email</label>
+							<input type="email" name="email" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Phone Number</label>
+							<input type="number" name="phone" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Designation</label>
+							<input type="text" name="name" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Upload Image</label>
+							  <input type="file" name='image' class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4 mt-3">
+							<button type='submit' class='btn btn-outline-primary rounded-pill w-100'>Submit</button>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class='col-md-2'></div>
+	</div>
+</div>
+{% endblock %}

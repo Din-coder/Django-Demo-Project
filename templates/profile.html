@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-2'></div>
+		<div class='col-md-8 mt-5'>
+			<div class="card p-5">
+				<form method='post' class='post-form' action="userupdate/{{ user.id }}" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<h3 class="text-dark">MY PROFILE</h3>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label style="margin-left: 13px;">Firstname</label>
+							<input type="text" name="first_name" value="{{ user.first_name }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label style="margin-left: 13px;">Lastname</label>
+							<input type="text" name="last_name" value="{{ user.last_name }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label style="margin-left: 13px;">Email</label>
+							<input type="email" name="email" value="{{ user.email }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4 mt-3 d-flex">
+							<button type='submit' class='btn btn-outline-primary rounded-pill'>Update</button>
+							<a href="{% url 'resetpassword' %}">
+								<button type='button' class='btn btn-outline-primary rounded-pill ml-1'>Reset Password</button>
+							</a>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class='col-md-2'></div>
+	</div>
+</div>
+{% endblock %}

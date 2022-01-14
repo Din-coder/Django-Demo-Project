@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-2'></div>
+		<div class='col-md-8 mt-5'>
+			<div class="card p-3">
+				<form method='post' class='post-form' action="/update/{{ per.personid }}" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+						<div class="col-md-12">
+							<center><h3 class="text-secondary">UPDATE REGISTRATION DETAILS</h3></center>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4 m-3">
+							<img src="{{ per.image.url }}" style="width: 150px; height:150px;" class="rounded-circle">
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-10">
+							<label style="margin-left: 12px;">Firstname</label>
+							<input type="text" name="firstname" value="{{ per.firstname }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-10">
+							<label style="margin-left: 12px;">Lastname</label>
+							<input type="text" name="lastname" value="{{ per.lastname }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-10">
+							<label style="margin-left: 12px;">Age</label>
+							<input type="number" name="age" value="{{ per.age }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-10">
+							<label style="margin-left: 12px;">Email</label>
+							<input type="email" name="email" value="{{ per.email }}" style="border: 0;" class='form-control'>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-10">
+							<label style="margin-left: 12px;">Upload Image</label>
+							<input type="file" name='image' style="border: 0;" default="{{ per.image.url }}" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4"></div>
+						<div class="col-md-4 mt-3">
+							<button type='submit' class='btn btn-outline-primary rounded-pill w-100'>Submit</button>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class='col-md-2'></div>
+	</div>
+</div>
+<h1>hello world!</h1>
+{% endblock %}

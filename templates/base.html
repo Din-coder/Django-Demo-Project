@@ -1,0 +1,57 @@
+<!doctype html>
+  {% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="{% static 'file.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Website</title>
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-light bg-info" style="height: 80px;">
+      <a class="navbar-brand text-light" href="{% url 'welcome' %}"><b>Hello</b></a>
+      {% if user.is_authenticated %}
+      <div class="row">
+        <div class="col-md-3 d-flex">
+          <a class="navbar-link text-light ml-2" href="{% url 'index' %}" style="text-decoration: none;">Employee</a>
+          <a class="navbar-link text-light ml-2" href="{% url 'profile' %}" style="text-decoration: none;">Profile</a>
+          <a class="navbar-link text-light ml-2" href="{% url 'logout' %}" style="text-decoration: none;">Logout</a>
+        </div>
+      </div>
+      {% else %}
+        <div class="row">
+          <div class="col-md-3 d-flex">
+            <a class="navbar-link text-light ml-2" href="{% url 'loginpage' %}" style="text-decoration: none;">Login</a>
+          </div>
+        </div>
+      {% endif %}
+    </nav>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row">
+      <div class="col-md-12">
+        <center>
+          <div class="alert" onclick="this.parentElement.style.display='none';">
+              <center>
+                <h5 style="color: goldenrod;">{{ message }}</h5>
+              </center>
+          </div>
+        </center>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% block body %}
+    {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
