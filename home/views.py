@@ -23,19 +23,19 @@ def loginpage(request):
 #first page after login
 @login_required(login_url='loginpage')
 def welcome(request):
-	return render(request, 'welcome.html')
+    return render(request, 'welcome.html')
 
 
 @login_required(login_url='loginpage')
 def index(request):
-	return render(request, 'index.html')
+    return render(request, 'index.html')
 
 
 #profile page
 @login_required(login_url='loginpage')
 def profile(request):
-	currentuser = request.user
-	return render(request, 'profile.html', {'user': currentuser})
+    print(request.session['hello'])
+    return render(request, 'profile.html')
 
 
 #first password reset page
@@ -108,6 +108,7 @@ def login(request):
 		user = auth.authenticate(username=username, password=password)
 		if user is not None:
 			auth.login(request, user)
+			request.session['hello'] = username
 			messages.info(request, f'Welcome {username}.')
 			return redirect('welcome')
 		else:
@@ -139,10 +140,11 @@ def create(request):
 			image = f'media/default.jpg'
 		persons = person(firstname=fname, lastname=lname, age=age, email=email, image=image)
 		persons.save()
-		perso = person.objects.get(personid=persons.personid)
+  
 		details = personalDetails(phone=phone, personid=persons)
 		details.save()
-		position = designation(name=desname, personid=perso)
+  
+		position = designation(name=desname, personid=persons)
 		position.save()
 		return redirect('show')
 	else:
@@ -185,3 +187,8 @@ def update(request, personid):
 	else:
 		return redirect('show')
 
+
+
+# def hello(request):
+#     form = UserRegisterationForm()
+#     return render(request, 'hello.html', {'form': form})

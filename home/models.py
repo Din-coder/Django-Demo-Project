@@ -21,3 +21,4 @@ class designation(models.Model):
 	designationid = models.AutoField(primary_key=True)
 	personid = models.ForeignKey(person, on_delete=models.CASCADE)
 	name = models.CharField(max_length=255, default='', null=True)
+
